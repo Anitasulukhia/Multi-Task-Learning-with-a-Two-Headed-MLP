@@ -54,7 +54,8 @@ The network has a **shared body** (common feature extractor) and two **separate 
 ### Shared Body
 Learns general student representations.
 
-### Requirements
+---
+## Requirements
 torch
 torchvision
 pandas
