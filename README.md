@@ -54,6 +54,12 @@ The network has a **shared body** (common feature extractor) and two **separate 
 ### Shared Body
 Learns general student representations.
 
+### Head 1
+predicts the final grade with additional 2 layer training
+
+### Head 2
+predicts the romantic status with additional 2 layer training
+
 ---
 ## Requirements
 torch
