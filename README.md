@@ -1,38 +1,65 @@
-# Multi-Task-Learning-with-a-Two-Headed-MLP
-Student Performance Multi-Task Learning (PyTorch)
+#tudent Performance Multi-Task Learning 
 
-This project implements a multi-task neural network using PyTorch to predict:
-	1.	Final Grade (G3) — a regression task.
-	2.	Romantic Relationship Status — a binary classification task.
+This project demonstrates **multi-task learning** using PyTorch, where a single neural network predicts:
 
-The model jointly learns both tasks using a shared representation of student features, demonstrating how multi-task learning can improve generalization and data efficiency.
+1. 🎯 **Final Grade (G3)** — a *regression* task  
+2. ❤️ **Romantic Relationship Status** — a *binary classification* task  
 
-⸻
+By sharing a common representation (the "shared body"), the model learns how academic, demographic, and social factors jointly influence both outcomes.
 
-Dataset
+---
 
-Source: UCI Machine Learning Repository – Student Performance Dataset (ID 320)￼
+## Dataset
 
-The dataset contains attributes related to student demographics, social, and academic background.
-Key features include:
-	•	Demographic: sex, age, address, famsize, Pstatus
-	•	Academic: studytime, failures, schoolsup, absences, G1, G2, G3
-	•	Family & Social: Mjob, Fjob, guardian, internet, romantic
+**Source:** [UCI Machine Learning Repository — Student Performance Dataset (ID 320)](https://archive.ics.uci.edu/ml/datasets/Student+Performance)
 
-⸻
+The dataset contains attributes describing students’ demographic, social, and school-related information.
 
-Data Pre-Processing
-	1.	Feature / Target Separation
-	•	G3 → Regression target (y_grade)
-	•	romantic → Classification target (y_romantic)
-	•	All other columns → Input features (X)
-	2.	Encoding
-	•	Binary columns (yes/no, F/M, etc.) mapped to 0/1
-	•	Multi-category columns (Mjob, Fjob, guardian, etc.) one-hot encoded with pd.get_dummies()
-	3.	Scaling
-	•	Numerical columns standardized via StandardScaler (mean 0, std 1)
-	4.	Splitting
-	•	train_test_split → 70 % train / 15 % validation / 15 % test
-	5.	Tensor Conversion & DataLoaders
-	•	Custom StudentPerformanceDataset returning (X, y_grade, y_romantic)
-	•	Separate DataLoaders for train, validation, and test sets.
+**Key attributes:**
+- `sex`, `age`, `address`, `famsize`, `Pstatus`
+- `studytime`, `failures`, `absences`, `schoolsup`, `G1`, `G2`, `G3`
+- `Mjob`, `Fjob`, `reason`, `guardian`, `internet`, `romantic`
+
+---
+
+## Data Pre-Processing
+
+Steps applied before training:
+
+1. **Feature & Target separation**
+   - Features → `X`
+   - Regression target → `G3`
+   - Classification target → `romantic`
+
+2. **Encoding categorical data**
+   - Binary columns (`yes`/`no`, `F`/`M`, etc.) → `0`/`1`
+   - Multi-category columns (`Mjob`, `Fjob`, `guardian`, etc.) → one-hot encoding with `pd.get_dummies()`
+
+3. **Standardization**
+   - All numerical columns scaled with `StandardScaler` (zero mean, unit variance)
+
+4. **Splitting**
+   - 70 % train / 15 % validation / 15 % test using `train_test_split`
+
+5. **Tensor Conversion**
+   - Converted all splits into PyTorch tensors  
+   - Custom `StudentPerformanceDataset` implemented for multi-output samples
+
+---
+
+## Model Architecture
+
+The network has a **shared body** (common feature extractor) and two **separate heads**.
+
+### Shared Body
+Learns general student representations.
+
+### Requirements
+torch
+torchvision
+pandas
+numpy
+scikit-learn
+matplotlib
+ucimlrepo
+
